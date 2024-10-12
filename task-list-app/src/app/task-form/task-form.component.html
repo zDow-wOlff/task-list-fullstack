@@ -1,0 +1,32 @@
+<form [formGroup]="taskForm" (ngSubmit)="onSubmit()" class="task-form">
+  <div class="form-group">
+    <input formControlName="description" placeholder="Task description" required>
+  </div>
+  <div class="form-group">
+    <input formControlName="entityName" placeholder="Entity name">
+  </div>
+  <div class="form-group">
+    <input formControlName="taskType" placeholder="Task type">
+  </div>
+  <div class="form-group">
+    <input formControlName="date" type="date">
+  </div>
+  <div class="form-group">
+    <input formControlName="time" type="time">
+  </div>
+  <div class="form-group">
+    <input formControlName="contactPerson" placeholder="Contact person">
+  </div>
+  <div class="form-group">
+    <select formControlName="status">
+      <option value="">Select status</option>
+      <option value="pending">Pending</option>
+      <option value="in-progress">In Progress</option>
+      <option value="completed">Completed</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <textarea formControlName="note" placeholder="Note"></textarea>
+  </div>
+  <button type="submit" [disabled]="!taskForm.valid">Add Task</button>
+</form>

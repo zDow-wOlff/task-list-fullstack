@@ -1,0 +1,21 @@
+<div class="task-filter">
+  <form [formGroup]="filterForm">
+    <select formControlName="status">
+      <option value="">All statuses</option>
+      <option value="pending">Pending</option>
+      <option value="in-progress">In Progress</option>
+      <option value="completed">Completed</option>
+    </select>
+    <input formControlName="teamMember" placeholder="Team Member">
+    <input formControlName="taskType" placeholder="Task Type">
+    <input formControlName="entityName" placeholder="Entity Name">
+    <input formControlName="date" type="date">
+  </form>
+  <div class="sort-buttons">
+    <button (click)="onSortChange('date')">Sort by Date</button>
+    <button (click)="onSortChange('description')">Sort by Description</button>
+    <button (click)="onSortChange('teamMember')">Sort by Team Member</button>
+    <button (click)="onSortChange('taskType')">Sort by Task Type</button>
+    <button (click)="onSortChange('entityName')">Sort by Entity Name</button>
+  </div>
+</div>

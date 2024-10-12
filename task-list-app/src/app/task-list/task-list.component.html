@@ -1,0 +1,13 @@
+<div class="task-list-container">
+  <h2>Task List</h2>
+  <app-task-form (taskAdded)="onTaskAdded($event)"></app-task-form>
+  <app-task-filter (filterChanged)="onFilterChanged($event)" (sortChanged)="onSortChanged($event)"></app-task-filter>
+  <div class="task-list">
+    <app-task-item
+      *ngFor="let task of filteredTasks"
+      [task]="task"
+      (deleteTask)="onTaskDeleted($event)"
+      (updateTask)="onTaskUpdated($event)"
+    ></app-task-item>
+  </div>
+</div>
