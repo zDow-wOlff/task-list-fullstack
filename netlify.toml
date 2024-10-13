@@ -1,7 +1,9 @@
 [build]
   command = "npm install && npm install @angular-devkit/build-angular && npm install -g @angular/cli && cd task-list-app && ng build -c production"
   publish = "task-list-app/dist/task-list-app/browser"
-  functions = "netlify/functions"
+
+[functions]
+  directory = "functions"
 
 [build.environment]
     NODE_VERSION = "18.19"
