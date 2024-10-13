@@ -5,7 +5,7 @@ import os
 from serverless_wsgi import handle_request
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "https://task-list-fs.netlify.com"}})
 
 # Use SQLite for Netlify deployment
 basedir = os.path.abspath(os.path.dirname(__file__))
