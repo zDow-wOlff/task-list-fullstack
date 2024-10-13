@@ -1,5 +1,14 @@
 {
   "dependencies": {
     "rxjs": "^7.8.1"
+  },
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "serve:ssr:task-list-app": "node dist/task-list-app/server/server.mjs",
+    "postinstall": "ngcc"
   }
 }

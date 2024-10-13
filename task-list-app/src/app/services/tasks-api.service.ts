@@ -7,23 +7,23 @@ import { Task } from '../models/task.model';
   providedIn: 'root'
 })
 export class TasksApiService {
-  private API_URL = 'http://127.0.0.1:5000'; // Ensure this matches your backend
+  private apiUrl = '/.netlify/functions/api/tasks';
 
   constructor(private http: HttpClient) { }
 
   getTasks(): Observable<Task[]> {
-    return this.http.get<Task[]>(`${this.API_URL}/tasks`);
+    return this.http.get<Task[]>(`${this.apiUrl}`);
   }
 
   addTask(task: Task): Observable<Task> {
-    return this.http.post<Task>(`${this.API_URL}/tasks`, task);
+    return this.http.post<Task>(`${this.apiUrl}`, task);
   }
 
   deleteTask(id: number): Observable<any> {
-    return this.http.delete(`${this.API_URL}/tasks/${id}`);
+    return this.http.delete(`${this.apiUrl}/${id}`);
   }
 
   updateTask(task: Task): Observable<Task> {
-    return this.http.put<Task>(`${this.API_URL}/tasks/${task.id}`, task);
+    return this.http.put<Task>(`${this.apiUrl}/${task.id}`, task);
   }
 }

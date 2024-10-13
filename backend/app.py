@@ -2,10 +2,12 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 import os
+from serverless_wsgi import handle_request
 
 app = Flask(__name__)
-CORS(app, resources={r"/tasks/*": {"origins": "http://localhost:4200"}})
+CORS(app)
 
+# Use SQLite for Netlify deployment
 basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'tasks.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -22,6 +24,11 @@ def create_tables():
     with app.app_context():
         db.create_all()
 
+create_tables()
+
+def handler(event, context):
+    return handle_request(app, event, context)
+
 @app.cli.command("init-db")
 def init_db():
     create_tables()
@@ -36,5 +43,4 @@ def internal_server_error(error):
     return jsonify({'error': 'Internal server error'}), 500
 
 if __name__ == '__main__':
-    create_tables()
     app.run(debug=True)
