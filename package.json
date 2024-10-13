@@ -10,7 +10,9 @@
     "@angular/forms": "^18.2.8",
     "@angular/platform-browser": "^18.2.8",
     "@angular/platform-browser-dynamic": "^18.2.8",
-    "@angular/router": "^18.2.8"
+    "@angular/router": "^18.2.8",
+    "@angular/platform-server": "^18.2.8",
+    "@angular/ssr": "^18.2.8"
   },
   "scripts": {
     "ng": "ng",
