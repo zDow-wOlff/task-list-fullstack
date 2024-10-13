@@ -34,6 +34,8 @@ def create_task():
     )
     db.session.add(new_task)
     db.session.commit()
+    print(f"Received task data: {data}")
+    print(f"New task created: {new_task.to_dict()}")
     return jsonify(new_task.to_dict()), 201
 
 def create_tables():
