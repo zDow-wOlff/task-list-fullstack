@@ -9,7 +9,7 @@ CORS(app, resources={r"/*": {"origins": "https://task-list-fs.netlify.app"}})
 
 # Use SQLite for Netlify deployment
 basedir = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tmp/tasks.db' + os.path.join(basedir, 'tasks.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tmp/tasks.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
