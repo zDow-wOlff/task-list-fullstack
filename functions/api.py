@@ -39,10 +39,9 @@ class Task(db.Model):
             'done': self.done
         }
 
-@app.route('/tasks', methods=['GET'])
-def get_tasks():
-    tasks = Task.query.all()
-    return jsonify([task.to_dict() for task in tasks])
+@app.route('/test', methods=['GET'])
+def test():
+    return jsonify({'message': 'Test successful'}), 200
 
 @app.route('/tasks', methods=['POST'])
 def create_task():
