@@ -51,11 +51,17 @@ export class TaskListComponent implements OnInit {
   onTaskAdded(task: Task) {
     this.taskService.createTask(task).subscribe(
       (newTask) => {
+        console.log('Task created successfully:', newTask);
         this.tasks.push(newTask);
         this.filteredTasks = [...this.tasks];
       },
       (error) => {
         console.error('Error creating task:', error);
+        if (error.error instanceof ErrorEvent) {
+        console.error('Client-side error:', error.error.message);
+      } else {
+        console.error('Server-side error:', error.status, error.error);
+      }
       }
     );
   }
