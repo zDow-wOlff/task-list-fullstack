@@ -5,11 +5,11 @@ import os
 from serverless_wsgi import handle_request
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "https://task-list-fs.netlify.com"}})
+CORS(app, resources={r"/*": {"origins": "https://task-list-fs.netlify.app"}})
 
 # Use SQLite for Netlify deployment
 basedir = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'tasks.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tmp/tasks.db' + os.path.join(basedir, 'tasks.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -27,12 +27,8 @@ def create_tables():
 create_tables()
 
 def handler(event, context):
-    return handle_request(app, event, context)
-
-@app.cli.command("init-db")
-def init_db():
     create_tables()
-    print("Database initialized.")
+    return handle_request(app, event, context)
 
 @app.errorhandler(404)
 def not_found(error):
