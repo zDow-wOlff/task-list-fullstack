@@ -18,6 +18,24 @@ db = SQLAlchemy(app)
 from models import Task
 from routes import *
 
+@app.route('/tasks', methods=['POST'])
+def create_task():
+    data = request.json
+    new_task = Task(
+        description=data['description'],
+        entityName=data.get('entityName'),
+        taskType=data.get('taskType'),
+        date=data.get('date'),
+        time=data.get('time'),
+        contactPerson=data.get('contactPerson'),
+        status=data.get('status'),
+        note=data.get('note'),
+        done=data.get('done', False)
+    )
+    db.session.add(new_task)
+    db.session.commit()
+    return jsonify(new_task.to_dict()), 201
+
 def create_tables():
     with app.app_context():
         db.create_all()
