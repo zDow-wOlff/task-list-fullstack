@@ -79,6 +79,12 @@ def delete_task(task_id):
     db.session.commit()
     return '', 204
 
+def create_tables():
+    with app.app_context():
+        db.create_all()
+
+create_tables()
+
 def handler(event, context):
     return handle_request(app, event, context)
 
