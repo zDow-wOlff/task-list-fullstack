@@ -52,6 +52,8 @@ def create_task():
     )
     db.session.add(new_task)
     db.session.commit()
+    print(f"Creating task: {data}")
+    print(f"New Task created: {new_task.to_dict()}")
     return jsonify(new_task.to_dict()), 201
 
 @app.route('/tasks/<int:task_id>', methods=['PUT'])
