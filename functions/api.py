@@ -1,10 +1,25 @@
-from flask import Flask
-import serverless_http
+from flask import Flask, jsonify, request
+from flask_cors import CORS
+from flask_sqlalchemy import SQLAlchemy
+import os
+from serverless_wsgi import handle_request
 
 app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "https://task-list-fs.netlify.app"}})
 
-@app.route('/')
-def hello():
-    return 'Hello from Flask!'
+# Use SQLite for Netlify deployment
+basedir = os.path.abspath(os.path.dirname(__file__))
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'tasks.db')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-handler = serverless_http.get_handler(app)
+db = SQLAlchemy(app)
+
+# Import models and routes
+from models import Task
+from routes import *
+
+def handler(event, context):
+    return handle_request(app, event, context)
+
+if __name__ == '__main__':
+    app.run(debug=True)
