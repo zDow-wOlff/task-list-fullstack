@@ -1,6 +1,7 @@
 {
   "dependencies": {
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "@angular/compiler-cli": "^18.2.0"
   },
   "scripts": {
     "ng": "ng",
@@ -8,7 +9,6 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:task-list-app": "node dist/task-list-app/server/server.mjs",
-    "postinstall": "ngcc"
+    "serve:ssr:task-list-app": "node dist/task-list-app/server/server.mjs"
   }
 }
