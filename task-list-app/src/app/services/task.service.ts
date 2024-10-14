@@ -7,7 +7,7 @@ import { Task } from '../models/task.model';
   providedIn: 'root'
 })
 export class TaskService {
-  private apiUrl = '/.netlify/backend/app.py'; // Update this with your Flask backend URL
+  private apiUrl = '/.netlify/backend/app'; // Update this with your Flask backend URL
 
   constructor(private http: HttpClient) { }
 
